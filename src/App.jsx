@@ -3,18 +3,20 @@ import React, { Component } from "react";
 import TodoList from "TodoList";
 import initialTodos from "dataBase/todos.json";
 
+import RegisterForm from "TodoList/RegisterForm";
+
 class App extends Component {
   state = {
     todos: initialTodos,
   };
 
-  onDeleteTodo = todoId => {
+  deleteTodo = todoId => {
     this.setState(prevState => ({
       todos: prevState.todos.filter(todo => todo.id !== todoId),
     }));
   };
 
-  onReadyTodos = () => this.state.todos.filter(todo => todo.completed === true);
+  submitForm = todoData => console.log("todoData :>> ", todoData);
 
   render() {
     const { todos } = this.state;
@@ -25,10 +27,22 @@ class App extends Component {
     );
 
     return (
-      <div className="App">
+      <div>
+        {/* <input
+          type="text"
+          value={this.state.inputValue}
+          onChange={this.handleInputChange}
+          // onChange комбінує onBlur/onFocus і onInput
+          // onBlur={console.log("onBlur")}
+          // onFocus={console.log("onFocus")}
+        /> */}
+
+        <RegisterForm handleSubmit={this.submitForm} />
+        <RegisterForm handleSubmit={this.submitForm} />
+
         <p>Всього завдань: {todos.length}</p>
         <p>Виконаних завдань: {completedTodosCount}</p>
-        <TodoList todos={todos} onDeleteTodo={this.onDeleteTodo} />
+        <TodoList todos={todos} onDeleteTodo={this.deleteTodo} />
       </div>
     );
   }
