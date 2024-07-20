@@ -25,9 +25,15 @@
 // export default LoginForm;
 
 import { Formik, Form, Field } from "formik";
+import { object, string, number, date, InferType } from "yup";
 import { Input } from "./LoginForm.styled";
 
 const initialValues = { login: "", password: "", color: "" };
+
+const schema = object({
+  login: string().required(),
+  password: string().min(6).max(16).required(),
+});
 
 const handleSubmit = (values, actions) => {
   console.log("handleSubmit >> actions:::", actions);
@@ -38,7 +44,10 @@ const handleSubmit = (values, actions) => {
 
 const LoginForm = () => {
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+      validationSchema={schema}>
       <Form>
         <label>
           Login
