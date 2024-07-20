@@ -24,8 +24,8 @@
 
 // export default LoginForm;
 
-import { Formik, Form, Field } from "formik";
-import { object, string, number, date, InferType } from "yup";
+import { Formik, Form, ErrorMessage } from "formik";
+import { object, string } from "yup";
 import { Input } from "./LoginForm.styled";
 
 const initialValues = { login: "", password: "", color: "" };
@@ -52,6 +52,7 @@ const LoginForm = () => {
         <label>
           Login
           <Input type="text" name="login" placeholder="Enter your login here" />
+          <ErrorMessage name="login" component="div" />
         </label>
 
         <label>
@@ -62,6 +63,7 @@ const LoginForm = () => {
             placeholder="Enter your password here"
             autoComplete="new-password"
           />
+          <ErrorMessage name="password" component="div" />
         </label>
 
         <Input as="select" name="color">
