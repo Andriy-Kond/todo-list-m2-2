@@ -6,6 +6,7 @@ const List = styled.ul`
   gap: 10px;
   width: 600px;
 `;
+
 const ListItem = styled.li`
   display: flex;
   gap: 20px;
@@ -13,4 +14,9 @@ const ListItem = styled.li`
   border: 1px solid black;
   padding: 5px;
 `;
-export { List, ListItem };
+
+const ItemText = styled.span`
+  text-decoration: ${props => props.isCompleted && "line-through"};
+`;
+
+export { List, ListItem, ItemText };

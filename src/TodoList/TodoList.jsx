@@ -1,15 +1,25 @@
-import { List, ListItem } from "./TodoList.styled";
+import React, { Component } from "react";
+import { List, ListItem, ItemText } from "./TodoList.styled";
 
-const TodoList = props => {
-  const { todos, onDeleteTodo } = props;
+class TodoList extends Component {
+  state = {};
 
-  return (
-    <>
+  render() {
+    const { todos, onDeleteTodo, onToggleCompleted } = this.props;
+    return (
       <List>
         {todos.map(({ id, text, completed }) => (
           <ListItem key={id}>
-            <span>Task: {text}</span>
-            <span>Completed: {completed ? "завершено" : "в процесі"}</span>
+            <ItemText isCompleted={completed}>Task: {text}</ItemText>
+
+            <input
+              type="checkbox"
+              checked={completed}
+              onChange={() => {
+                onToggleCompleted(id);
+              }}
+            />
+
             <button
               onClick={() => {
                 onDeleteTodo(id);
@@ -19,8 +29,8 @@ const TodoList = props => {
           </ListItem>
         ))}
       </List>
-    </>
-  );
-};
+    );
+  }
+}
 
 export default TodoList;
