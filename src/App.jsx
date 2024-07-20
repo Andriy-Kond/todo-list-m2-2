@@ -5,6 +5,7 @@ import initialTodos from "dataBase/todos.json";
 import AddTodo from "TodoList/AddTodo";
 import shortid from "shortid";
 import FilterTodo from "TodoList/FilterTodo";
+import LoginForm from "LoginForm";
 
 // import RegisterForm from "TodoList/RegisterForm";
 
@@ -97,6 +98,9 @@ class App extends Component {
 
         <AddTodo onAddTodo={this.addTask} />
         <FilterTodo onChange={this.changeFilter} value={filter} />
+
+        <br />
+        <LoginForm />
       </div>
     );
   }
