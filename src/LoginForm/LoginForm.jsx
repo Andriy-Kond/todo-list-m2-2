@@ -1,34 +1,69 @@
-// * Заміна контрольованої форми:
+// * use Formic
+// const LoginForm = () => {
+//   const handleSubmit = e => {
+//     e.preventDefault();
+//     const { login, password } = e.target.elements;
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <label>
+//         Login
+//         <input type="text" name="login" />
+//       </label>
+
+//       <label>
+//         Password
+//         <input type="password" name="password" autoComplete="new-password" />
+//       </label>
+
+//       <button type="submit">Submit</button>
+//     </form>
+//   );
+// };
+
+// export default LoginForm;
+
+import { Formik, Form, Field } from "formik";
+import { Input } from "./LoginForm.styled";
+
+const initialValues = { login: "", password: "", color: "" };
+
+const handleSubmit = (values, actions) => {
+  console.log("handleSubmit >> actions:::", actions);
+  console.log("handleSubmit >> values:::", values);
+
+  actions.resetForm();
+};
+
 const LoginForm = () => {
-  const handleSubmit = e => {
-    e.preventDefault();
-    // console.log(e.target.elements.login.value);
-    const { login, password } = e.target.elements;
-    // console.log(login.value, password.value);
-
-    const elements = [...e.target.elements];
-    const filteredElements = elements.filter(
-      element => element.nodeName === "INPUT",
-    );
-
-    const values = filteredElements.map(element => element.value);
-    console.log("handleSubmit >> values:::", values);
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Login
-        <input type="text" name="login" />
-      </label>
+    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Form>
+        <label>
+          Login
+          <Input type="text" name="login" placeholder="Enter your login here" />
+        </label>
 
-      <label>
-        Password
-        <input type="password" name="password" autoComplete="new-password" />
-      </label>
+        <label>
+          Password
+          <Input
+            type="password"
+            name="password"
+            placeholder="Enter your password here"
+            autoComplete="new-password"
+          />
+        </label>
 
-      <button type="submit">Submit</button>
-    </form>
+        <Input as="select" name="color">
+          <option value="red">Red</option>
+          <option value="green">Green</option>
+          <option value="blue">Blue</option>
+        </Input>
+
+        <button type="submit">Submit</button>
+      </Form>
+    </Formik>
   );
 };
 
