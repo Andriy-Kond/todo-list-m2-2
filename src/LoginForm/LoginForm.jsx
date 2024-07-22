@@ -1,4 +1,3 @@
-// * use Formic
 // const LoginForm = () => {
 //   const handleSubmit = e => {
 //     e.preventDefault();
@@ -24,6 +23,7 @@
 
 // export default LoginForm;
 
+// * use Formik
 import { Formik, Form, ErrorMessage } from "formik";
 import { object, string } from "yup";
 import { Input } from "./LoginForm.styled";
